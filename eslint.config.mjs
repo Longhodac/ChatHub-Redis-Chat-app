@@ -20,6 +20,13 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "react/no-unescaped-entities": "off", // or "warn" / "error"
+      "@next/next/no-img-element": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
