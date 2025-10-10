@@ -18,7 +18,7 @@ const page = async () => {
           src="/redis-logo.svg"
           alt="Redis Logo"
           className="absolute -left-1/4 opacity-25 -bottom-52 lg:scale-125 xl:scale-100 scale-[2]
-    pointer-events-none select-none "
+    pointer-events-none select-none"
         />
 
         <div className="flex flex-col gap-2 px-4 xl:ml-40 text-center md:text-start font-semibold">
