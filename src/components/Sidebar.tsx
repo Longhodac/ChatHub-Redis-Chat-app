@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 interface SidebarProps {
   isCollapsed: boolean;
+  users: User[];
 }
 const Sidebar = ({ isCollapsed }: SidebarProps) => {
   const selectedUser = USERS[0];

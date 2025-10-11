@@ -1,4 +1,5 @@
 export interface Message {
+  indexOf(message: Message): unknown;
   id: number;
   senderId: string;
   content: string;
