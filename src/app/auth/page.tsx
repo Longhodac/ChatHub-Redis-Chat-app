@@ -1,17 +1,12 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import AuthButtons from "./AuthButtons";
 import { redis } from "@/lib/db";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-// import { redirect } from "next/navigation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
 const page = async () => {
-  //   const { isAuthenticated } = getKindeServerSession();
-  //   if (await isAuthenticated()) return redirect("/");
-
-  await redis.set("foo", "bar");
-
-  const data = await redis.get("foo");
+  const { isAuthenticated } = getKindeServerSession();
+  if (await isAuthenticated()) return redirect("/");
 
   return (
     <div className="flex h-screen w-full">
