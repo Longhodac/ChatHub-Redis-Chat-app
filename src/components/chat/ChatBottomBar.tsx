@@ -15,13 +15,18 @@ import { usePreferences } from "@/store/usePreference";
 import { useMutation } from "@tanstack/react-query";
 import { sendMessageAction } from "@/actions/message.actions";
 import { useSelectedUser } from "@/store/useSelectedUsers";
-
+import {
+  CldUploadWidget,
+  CloudinaryLoader,
+  CloudinaryUploadWidgetInfo,
+} from "next-cloudinary";
 const ChatBottomBar = () => {
   const [message, setMessage] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const { selectedUser } = useSelectedUser();
 
   const { soundEnabled } = usePreferences();
+  const [imgUrl, setImgUrl] = useState("");
   const [playSound1] = useSound("/sounds/keystroke1.mp3");
   const [playSound2] = useSound("/sounds/keystroke2.mp3");
   const [playSound3] = useSound("/sounds/keystroke3.mp3");
@@ -67,8 +72,40 @@ const ChatBottomBar = () => {
   return (
     <div className="p-2 flex justify-between w-full items-center gap-2">
       {!message.trim() && (
-        <ImageIcon size={20} className="cursor-pointer text-muted-foreground" />
+        <CldUploadWidget
+          signatureEndpoint={"/api/sign-cloudinary-params"}
+          onSuccess={(result, { widget }) => {
+            setImgUrl((result.info as CloudinaryUploadWidgetInfo).secure_url);
+            widget.close();
+          }}
+        >
+          {({ open }) => {
+            return (
+              <ImageIcon
+                size={20}
+                onClick={() => open()}
+                className="cursor-pointer text-muted-foreground"
+              />
+            );
+          }}
+        </CldUploadWidget>
       )}
+
+      {/* <Dialog>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Image Preview</DialogTitle>
+          </DialogHeader>
+          <div className="flex justify-center items-center relative h-96 w-full mx-auto">
+            <Image
+              src={imgUrl}
+              alt="Image-Preview"
+              fill
+              className="oject-contain"
+            />
+          </div>
+        </DialogContent>
+      </Dialog> */}
 
       <AnimatePresence>
         <motion.div
