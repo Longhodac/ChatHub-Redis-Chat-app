@@ -24,8 +24,8 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-// import { pusherClient } from "@/lib/pusher";
-// import { Message } from "@/db/dummy";
+import { pusherClient } from "@/lib/pusher";
+import { Message } from "@/db/dummy";
 
 const ChatBottomBar = () => {
   const [message, setMessage] = useState("");
@@ -81,39 +81,39 @@ const ChatBottomBar = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const channelName = `${currentUser?.id}__${selectedUser?.id}`
-  //     .split("__")
-  //     .sort()
-  //     .join("__");
-  //   const channel = pusherClient?.subscribe(channelName);
+  useEffect(() => {
+    const channelName = `${currentUser?.id}__${selectedUser?.id}`
+      .split("__")
+      .sort()
+      .join("__");
+    const channel = pusherClient?.subscribe(channelName);
 
-  //   const handleNewMessage = (data: { message: Message }) => {
-  //     queryClient.setQueryData(
-  //       ["messages", selectedUser?.id],
-  //       (oldMessages: Message[]) => {
-  //         return [...oldMessages, data.message];
-  //       }
-  //     );
+    const handleNewMessage = (data: { message: Message }) => {
+      queryClient.setQueryData(
+        ["messages", selectedUser?.id],
+        (oldMessages: Message[]) => {
+          return [...oldMessages, data.message];
+        }
+      );
 
-  //     if (soundEnabled && data.message.senderId !== currentUser?.id) {
-  //       playNotificationSound();
-  //     }
-  //   };
+      if (soundEnabled && data.message.senderId !== currentUser?.id) {
+        playNotificationSound();
+      }
+    };
 
-  //   channel.bind("newMessage", handleNewMessage);
+    channel.bind("newMessage", handleNewMessage);
 
-  //   return () => {
-  //     channel.unbind("newMessage", handleNewMessage);
-  //     pusherClient.unsubscribe(channelName);
-  //   };
-  // }, [
-  //   currentUser?.id,
-  //   selectedUser?.id,
-  //   queryClient,
-  //   playNotificationSound,
-  //   soundEnabled,
-  // ]);
+    return () => {
+      channel.unbind("newMessage", handleNewMessage);
+      pusherClient.unsubscribe(channelName);
+    };
+  }, [
+    currentUser?.id,
+    selectedUser?.id,
+    queryClient,
+    playNotificationSound,
+    soundEnabled,
+  ]);
 
   return (
     <div className="p-2 flex justify-between w-full items-center gap-2">
