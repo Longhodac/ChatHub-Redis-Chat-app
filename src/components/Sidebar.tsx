@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import useSound from "use-sound";
 import { usePreferences } from "@/store/usePreference";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { useSelectedUser } from "@/store/useSelectedUsers";
+import { useSelectedUser } from "@/store/useSelectedUser";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 interface SidebarProps {

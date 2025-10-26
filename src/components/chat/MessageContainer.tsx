@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ChatTopbar from "./ChatTopbar";
 import MessageList from "./MessageList";
 import ChatBottomBar from "./ChatBottomBar";
-import { useSelectedUser } from "@/store/useSelectedUsers";
+import { useSelectedUser } from "@/store/useSelectedUser";
 
 const MessageContainer = () => {
   const { setSelectedUser } = useSelectedUser();

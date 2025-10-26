@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import Sidebar from "../Sidebar";
 import { User, USERS } from "@/db/dummy";
 import MessageContainer from "./MessageContainer";
-import { useSelectedUser } from "@/store/useSelectedUsers";
+import { useSelectedUser } from "@/store/useSelectedUser";
 
 interface ChatLayoutProps {
   defaultLayout?: number[] | undefined;

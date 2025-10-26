@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { img, select } from "framer-motion/client";
-import { useSelectedUser } from "@/store/useSelectedUsers";
+import { useSelectedUser } from "@/store/useSelectedUser";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useQuery } from "@tanstack/react-query";
 import { getMessages } from "@/actions/message.actions";

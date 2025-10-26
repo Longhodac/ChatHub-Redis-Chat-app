@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { useSelectedUser } from "@/store/useSelectedUsers";
+import { useSelectedUser } from "@/store/useSelectedUser";
 import { Info, X } from "lucide-react";
 
 const ChatTopBar = () => {
